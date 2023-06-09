@@ -1,0 +1,17 @@
+   *** Start: Program Calculation - Version 2023-4.0.580
+   *** Start: Program csm
+   
+   SOFiSTiK 2023-4.0.580    CSM - CONSTRUCTION STAGE MANAGER
+   Output on file CSM_automatico.plb
+   +++++ error no. 10001
+   Data base CSM_automatico.cdb not found or erroneous
+   TIME NEEDED         0, TOTAL         0
+   DATE       2023-06-07, 11:57:06
+   
+   
+   
+    +++++    1 errors and    0 warnings +++++
+   +++++ DATA ERRONEOUS, PROGRAM ABORTED +++++
+   *** Stop : Program csm
+   *** Process canceled, error detected!
+   *** End of Calculation!

@@ -1,0 +1,165 @@
++PROG CSM
+
+HEAD Proceso constructivo Huallaga
+CTRL CANT 2    $ ALL SEGMENTS APPEAR AT SYSTEM POSITION / NO CAMBER CALCULATION
+CTRL PROB LINE $ Cálculo lineal
+CTRL  eige MC90 $ C&S effects as per Model code 90
+CTRL  GAMC 1    $ it will change 1.35 factor for creep/shr  to 1.0,
+                $ as factors are applied later in combinations based on strength/ service check
+$CTRL TEST 3220 3330
+$CTRL WARN 343
+$CTRL WARN 124  $para que no da error por haber usado los LC 15xxxx en LL
+$CTRL GPCS 0
+$CTRL BEAM AQB  $Analizar retracción y fluencia en aqb
+$CTRL RELZ AUTO $Tendon relaxación automatico
+$CTRL STOR +1+2+8
+ECHO FULL YES
+CTRL STOR 0 ; SCAL AQ_S 0 $ no AQB check print
+CTRL BEAM ASE  $ AQB en ASE
+
+!*!Label Construction stages
+CS NO 1 TYPE g_1 TITL "Pylon_1_"
+CS NO 10 TYPE g_1 TITL "Support_31_"
+CS NO 12 TYPE g_1 TITL "Support_32_"
+CS NO 14 TYPE g_1 TITL "Support_34_"
+CS NO 16 TYPE g_1 TITL "Support_35_"
+CS NO 18 TYPE g_1 TITL "Deck_11_"
+CS NO 20 TYPE g_1 TITL "Deck_12_"
+CS NO 22 TYPE g_1 TITL "Deck_13_"
+CS NO 24 TYPE g_1 TITL "Cable_304_1st stress"
+CS NO 26 TYPE g_1 TITL "Cable_303_1st stress"
+CS NO 28 TYPE g_1 TITL "Cable_302_1st stress"
+CS NO 30 TYPE g_1 TITL "Cable_301_1st stress"
+CS NO 32 TYPE g_1 TITL "Cable_401_1st stress"
+CS NO 34 TYPE g_1 TITL "Cable_402_1st stress"
+CS NO 36 TYPE g_1 TITL "Cable_403_1st stress"
+CS NO 38 TYPE g_1 TITL "Cable_404_1st stress"
+CS NO 40 TYPE g_1 TITL "Cable_405_1st stress"
+CS NO 42 TYPE g_1 TITL "Cable_305_1st stress"
+CS NO 44 TYPE g_1 TITL "Cable_406_1st stress"
+CS NO 46 TYPE g_1 TITL "Cable_306_1st stress"
+CS NO 48 TYPE g_1 TITL "Cable_410_1st stress"
+CS NO 50 TYPE g_1 TITL "Cable_310_1st stress"
+CS NO 52 TYPE g_1 TITL "Support_340_"
+CS NO 54 TYPE g_1 TITL "Cable_309_1st stress"
+CS NO 56 TYPE g_1 TITL "Cable_409_1st stress"
+CS NO 58 TYPE g_1 TITL "Support_320_"
+CS NO 60 TYPE g_1 TITL "Cable_409_1st stress"
+CS NO 62 TYPE g_1 TITL "Cable_309_1st stress"
+CS NO 64 TYPE g_1 TITL "Cable_410_2nd stress"
+CS NO 66 TYPE g_1 TITL "Cable_310_2nd stress"
+CS NO 68 TYPE g_1 TITL "Cable_408_1st stress"
+CS NO 70 TYPE g_1 TITL "Cable_308_1st stress"
+CS NO 72 TYPE g_1 TITL "Cable_407_1st stress"
+CS NO 74 TYPE g_1 TITL "Cable_307_1st stress"
+CS NO 76 TYPE g_1 TITL "Support_310_"
+CS NO 78 TYPE g_1 TITL "Support_350_"
+CS NO 80 TYPE g_1 TITL "Cable_306_2nd stress"
+CS NO 82 TYPE g_1 TITL "Cable_305_2nd stress"
+CS NO 84 TYPE g_1 TITL "Cable_304_2nd stress"
+CS NO 86 TYPE g_1 TITL "Cable_303_2nd stress"
+CS NO 88 TYPE g_1 TITL "Cable_302_2nd stress"
+CS NO 90 TYPE g_1 TITL "Cable_301_2nd stress"
+CS NO 92 TYPE g_1 TITL "Cable_401_2nd stress"
+CS NO 94 TYPE g_1 TITL "Cable_402_2nd stress"
+CS NO 96 TYPE g_1 TITL "Cable_403_2nd stress"
+CS NO 98 TYPE g_1 TITL "Cable_404_2nd stress"
+CS NO 100 TYPE g_1 TITL "Cable_405_2nd stress"
+CS NO 102 TYPE g_1 TITL "Cable_406_2nd stress"
+CS NO 104 TYPE g_1 TITL "DL_10_"
+
+!*!Label Group activation
+GRP NO 0,10,20,21,22 ICS1 1  $ Pylon
+GRP NO 11,15 ICS1 18  $ Deck 14,15
+GRP NO 12,14 ICS1 20  $ Deck 12,14
+GRP NO 13 ICS1 22  $ Deck 13
+GRP NO 31 ICS1 10 ATIL 75  $ Support 31
+GRP NO 32 ICS1 12 ATIL 57  $ Support 32
+GRP NO 34 ICS1 14 ATIL 51  $ Support 34
+GRP NO 35 ICS1 16 ATIL 77  $ Support 35
+GRP NO 301 ICS1 30 FAC1 1e-12  $ Cable301
+GRP NO 302 ICS1 28 FAC1 1e-12  $ Cable302
+GRP NO 303 ICS1 26 FAC1 1e-12  $ Cable303
+GRP NO 304 ICS1 24 FAC1 1e-12  $ Cable304
+GRP NO 305 ICS1 42 FAC1 1e-12  $ Cable305
+GRP NO 306 ICS1 46 FAC1 1e-12  $ Cable306
+GRP NO 307 ICS1 74 FAC1 1e-12  $ Cable307
+GRP NO 308 ICS1 70 FAC1 1e-12  $ Cable308
+GRP NO 309 ICS1 54 FAC1 1e-12  $ Cable309
+GRP NO 310 ICS1 50 FAC1 1e-12  $ Cable310
+GRP NO 401 ICS1 32 FAC1 1e-12  $ Cable401
+GRP NO 402 ICS1 34 FAC1 1e-12  $ Cable402
+GRP NO 403 ICS1 36 FAC1 1e-12  $ Cable403
+GRP NO 404 ICS1 38 FAC1 1e-12  $ Cable404
+GRP NO 405 ICS1 40 FAC1 1e-12  $ Cable405
+GRP NO 406 ICS1 44 FAC1 1e-12  $ Cable406
+GRP NO 407 ICS1 72 FAC1 1e-12  $ Cable407
+GRP NO 408 ICS1 68 FAC1 1e-12  $ Cable408
+GRP NO 409 ICS1 56 FAC1 1e-12  $ Cable409
+GRP NO 410 ICS1 48 FAC1 1e-12  $ Cable410
+
+!*!Label Loadcase activation
+LC NO 301.0 ICS1 90  $ Cable_301_2nd
+LC NO 302.0 ICS1 88  $ Cable_302_2nd
+LC NO 303.0 ICS1 86  $ Cable_303_2nd
+LC NO 304.0 ICS1 84  $ Cable_304_2nd
+LC NO 305.0 ICS1 82  $ Cable_305_2nd
+LC NO 306.0 ICS1 80  $ Cable_306_2nd
+LC NO 307.0 ICS1 74  $ Cable_307_1st
+LC NO 308.0 ICS1 70  $ Cable_308_1st
+LC NO 309.0 ICS1 54  $ Cable_309_1st
+LC NO 310.0 ICS1 66  $ Cable_310_2nd
+LC NO 401.0 ICS1 92  $ Cable_401_2nd
+LC NO 402.0 ICS1 94  $ Cable_402_2nd
+LC NO 403.0 ICS1 96  $ Cable_403_2nd
+LC NO 404.0 ICS1 98  $ Cable_404_2nd
+LC NO 405.0 ICS1 100  $ Cable_405_2nd
+LC NO 406.0 ICS1 102  $ Cable_406_2nd
+LC NO 407.0 ICS1 72  $ Cable_407_1st
+LC NO 408.0 ICS1 68  $ Cable_408_1st
+LC NO 409.0 ICS1 56  $ Cable_409_1st
+LC NO 410.0 ICS1 64  $ Cable_410_2nd
+LC NO 10.0 ICS1 104  $ DL_10_
+LC NO 10301.0 ICS1 30  $ Cable_301_1st
+LC NO 10302.0 ICS1 28  $ Cable_302_1st
+LC NO 10303.0 ICS1 26  $ Cable_303_1st
+LC NO 10304.0 ICS1 24  $ Cable_304_1st
+LC NO 10305.0 ICS1 42  $ Cable_305_1st
+LC NO 10306.0 ICS1 46  $ Cable_306_1st
+LC NO 10401.0 ICS1 32  $ Cable_401_1st
+LC NO 10402.0 ICS1 34  $ Cable_402_1st
+LC NO 10403.0 ICS1 36  $ Cable_403_1st
+LC NO 10404.0 ICS1 38  $ Cable_404_1st
+LC NO 10405.0 ICS1 40  $ Cable_405_1st
+LC NO 10406.0 ICS1 44  $ Cable_406_1st
+LC NO 10410.0 ICS1 48  $ Cable_410_1st
+LC NO 10310.0 ICS1 50  $ Cable_310_1st
+LC ICS1 1  $ 
+LC ICS1 1  $ 
+LC ICS1 1  $ 
+LC ICS1 1  $ 
+LC ICS1 1  $ 
+LC ICS1 1  $ 
+
+!*!Label Group-stage special settings
+GRCS NO 301 CS 90 FACS 1e-12  $ -
+GRCS NO 302 CS 88 FACS 1e-12  $ -
+GRCS NO 303 CS 86 FACS 1e-12  $ -
+GRCS NO 304 CS 84 FACS 1e-12  $ -
+GRCS NO 305 CS 82 FACS 1e-12  $ -
+GRCS NO 306 CS 80 FACS 1e-12  $ -
+GRCS NO 310 CS 66 FACS 1e-12  $ -
+GRCS NO 401 CS 92 FACS 1e-12  $ -
+GRCS NO 402 CS 94 FACS 1e-12  $ -
+GRCS NO 403 CS 96 FACS 1e-12  $ -
+GRCS NO 404 CS 98 FACS 1e-12  $ -
+GRCS NO 405 CS 100 FACS 1e-12  $ -
+GRCS NO 406 CS 102 FACS 1e-12  $ -
+GRCS NO 410 CS 64 FACS 1e-12  $ -
+
+!*!Label Additional information
+$ Aquí va el código extra que se quiera añadir al CSM
+
+END
+
++APPLY "$(NAME)_csm.dat"
